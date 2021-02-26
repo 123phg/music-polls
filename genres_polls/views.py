@@ -5,7 +5,11 @@ from genres_polls import serializers
 from genres_polls.models import Question
 
 
-class GenresPollsQuestionViewSet(mixins.ListModelMixin, GenericViewSet):
+class GenresPollsQuestionViewSet(
+    mixins.ListModelMixin,
+    mixins.RetrieveModelMixin,
+    GenericViewSet
+):
     def get_queryset(self):
         return Question.objects.actual_for_user(self.request.user)
 
