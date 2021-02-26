@@ -7,10 +7,7 @@ from genres_polls.models import Question
 
 class GenresPollsQuestionViewSet(mixins.ListModelMixin, GenericViewSet):
     def get_queryset(self):
-        return Question.objects.filter(
-            user=self.request.user,
-            selected_answer=None
-        )
+        return Question.objects.actual_for_user(self.request.user)
 
     def get_serializer_class(self):
         return serializers.GenresPollQuestionsSerializer

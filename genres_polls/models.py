@@ -2,9 +2,11 @@ from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
+from genres_polls.managers import QuestionManager
+
 
 class Question(models.Model):
-    objects = models.Manager()
+    objects = QuestionManager()
 
     user = models.ForeignKey(
         to=User,
