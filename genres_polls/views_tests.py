@@ -27,10 +27,15 @@ def test_should_return_non_answered_questions(f_user):
     url = reverse('genres_polls_questions-list')
     response = client.get(url)
 
-    assert response.data['results'] == [
-        {
-            'id': test_user_question.pk,
-            'question_image_url': 'http://www.test_user_q_2.jpg',
-            'options': ['default_option'],
-        }
-    ]
+    assert response.data == {
+        'count': 1,
+        'next': None,
+        'previous': None,
+        'results': [
+            {
+                'id': test_user_question.pk,
+                'question_image_url': 'http://www.test_user_q_2.jpg',
+                'options': ['default_option'],
+            }
+        ]
+    }
