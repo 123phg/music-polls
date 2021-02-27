@@ -1,0 +1,2 @@
+class AnswerValidationException(Exception):
+    pass
