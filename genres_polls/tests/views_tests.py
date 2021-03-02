@@ -19,6 +19,12 @@ def f_question(f_user):
     )
 
 
+def _get_client(user):
+    client = APIClient()
+    client.force_authenticate(user)
+    return client
+
+
 @pytest.mark.django_db
 def test_should_return_non_answered_questions(
     f_user,
@@ -30,8 +36,7 @@ def test_should_return_non_answered_questions(
     test_user = f_user
     test_user_question = f_question
 
-    client = APIClient()
-    client.force_authenticate(test_user)
+    client = _get_client(test_user)
     url = reverse('genres_polls_questions-list')
     response = client.get(url)
 
@@ -60,8 +65,7 @@ def test_should_return_one_question(
     test_user = f_user
     test_user_question = f_question
 
-    client = APIClient()
-    client.force_authenticate(test_user)
+    client = _get_client(test_user)
     url = reverse('genres_polls_questions-detail', [test_user_question.pk])
     response = client.get(url)
 
@@ -70,3 +74,61 @@ def test_should_return_one_question(
         'question_image_url': 'http://www.test_user_q_2.jpg',
         'options': ['default_option']
     }
+
+
+@pytest.mark.django_db
+def test_should_answer_the_question(
+    f_question,
+    f_user
+):
+    """
+    Tests, that question can be answer with special DRF action
+    """
+    test_question = f_question
+    test_user = f_user
+
+    client = _get_client(test_user)
+    url = reverse('genres_polls_questions-answer', [test_question.pk])
+
+    response = client.patch(
+        url,
+        data={
+            'selected_answer': test_question.options[0]
+        }
+    )
+
+    assert response.data == {
+        'id': test_question.pk,
+        'question_image_url': 'http://www.test_user_q_2.jpg',
+        'options': ['default_option'],
+        'selected_answer': 'default_option',
+        'correct_answer': 'default_option'
+    }
+
+
+@pytest.mark.django_db
+def test_should_raise_exception_if_selected_answer_not_provided(
+    f_question,
+    f_user
+):
+    """
+    If we try to use "answer" action and we provided "selected_answer"
+    not from question.options. We should fetch 400 error with correct explanation
+    """
+
+    test_question = f_question
+    test_user = f_user
+
+    client = _get_client(test_user)
+    url = reverse('genres_polls_questions-answer', [test_question.pk])
+
+    response = client.patch(
+        url,
+        data={
+            'selected_answer': 'not valid answer'
+        }
+    )
+
+    assert response.status_code == 400
+    assert response.content.decode("utf-8") == f'["Answer=not valid answer is not' \
+                                               f' in option for question with id={test_question.pk}"]'
