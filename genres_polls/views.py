@@ -26,8 +26,8 @@ class GenresPollsQuestionViewSet(
     def get_serializers_map(self):
         return {
             self.answer.__name__: serializers.QuestionAnswerSerializer,
-            self.list.__name__: serializers.GenresPollQuestionsSerializer,
-            self.retrieve.__name__: serializers.GenresPollQuestionsSerializer,
+            self.list.__name__: serializers.QuestionsSerializer,
+            self.retrieve.__name__: serializers.QuestionsSerializer,
         }
 
     def get_serializer_class(self):

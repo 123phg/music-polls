@@ -4,7 +4,7 @@ from genres_polls.models import Question
 
 
 # todo: rename "GenresPollQuestionsSerializer" to "QuestionSerializer"
-class GenresPollQuestionsSerializer(serializers.ModelSerializer):
+class QuestionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = (
