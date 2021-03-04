@@ -18,11 +18,11 @@ def f_users():
         (
             [
                 {
-                    'question_image_url': 'http://www.test_user_q_1.jpg',
+                    'image_url': 'http://www.test_user_q_1.jpg',
                     'selected_answer': None
                 },
                 {
-                    'question_image_url': 'http://www.test_user_q_2.jpg',
+                    'image_url': 'http://www.test_user_q_2.jpg',
                     'selected_answer': None
                 }
             ],
@@ -33,11 +33,11 @@ def f_users():
         (
                 [
                     {
-                        'question_image_url': 'http://www.test_user_q_1.jpg',
+                        'image_url': 'http://www.test_user_q_1.jpg',
                         'selected_answer': 'default_option'
                     },
                     {
-                        'question_image_url': 'http://www.test_user_q_2.jpg',
+                        'image_url': 'http://www.test_user_q_2.jpg',
                         'selected_answer': None
                     }
                 ],
@@ -48,11 +48,11 @@ def f_users():
         (
                 [
                     {
-                        'question_image_url': 'http://www.test_user_q_1.jpg',
+                        'image_url': 'http://www.test_user_q_1.jpg',
                         'selected_answer': 'default_option'
                     },
                     {
-                        'question_image_url': 'http://www.test_user_q_2.jpg',
+                        'image_url': 'http://www.test_user_q_2.jpg',
                         'selected_answer': 'default_option'
                     }
                 ],
@@ -85,7 +85,7 @@ def test_should_return_non_answered_questions(
     Question.objects.bulk_create(test_user_questions)
 
     questions_wo_answers = Question.objects.actual_for_user(test_user)
-    result_image_urls = {question.question_image_url for question in questions_wo_answers}
+    result_image_urls = {question.image_url for question in questions_wo_answers}
 
     assert result_image_urls == expected_result
 

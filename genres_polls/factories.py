@@ -9,6 +9,6 @@ class QuestionFactory(factory.django.DjangoModelFactory):
         model = Question
 
     user = factory.SubFactory(UserFactory)
-    question_image_url = factory.Sequence(lambda n: f'http://www.images.com/image_{n}.jpg')
+    image_url = factory.Sequence(lambda n: f'http://www.images.com/image_{n}.jpg')
     options = ['default_option']
     correct_answer = 'default_option'

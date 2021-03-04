@@ -14,7 +14,7 @@ def f_user():
 @pytest.fixture()
 def f_question(f_user):
     return QuestionFactory(
-        question_image_url='http://www.test_user_q_1.jpg',
+        image_url='http://www.test_user_q_1.jpg',
         user=f_user,
         options=['default_option']
     )

@@ -14,7 +14,7 @@ def f_user():
 @pytest.fixture()
 def f_question(f_user):
     return QuestionFactory(
-        question_image_url='http://www.test_user_q_2.jpg',
+        image_url='http://www.test_user_q_2.jpg',
         user=f_user
     )
 
@@ -47,7 +47,7 @@ def test_should_return_non_answered_questions(
         'results': [
             {
                 'id': test_user_question.pk,
-                'question_image_url': 'http://www.test_user_q_2.jpg',
+                'image_url': 'http://www.test_user_q_2.jpg',
                 'options': ['default_option'],
             }
         ]
@@ -71,7 +71,7 @@ def test_should_return_one_question(
 
     assert response.data == {
         'id': test_user_question.pk,
-        'question_image_url': 'http://www.test_user_q_2.jpg',
+        'image_url': 'http://www.test_user_q_2.jpg',
         'options': ['default_option']
     }
 
@@ -99,7 +99,7 @@ def test_should_answer_the_question(
 
     assert response.data == {
         'id': test_question.pk,
-        'question_image_url': 'http://www.test_user_q_2.jpg',
+        'image_url': 'http://www.test_user_q_2.jpg',
         'options': ['default_option'],
         'selected_answer': 'default_option',
         'correct_answer': 'default_option'

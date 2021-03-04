@@ -9,7 +9,7 @@ class GenresPollQuestionsSerializer(serializers.ModelSerializer):
         model = Question
         fields = (
             'id',
-            'question_image_url',
+            'image_url',
             'options',
         )
 
@@ -33,7 +33,7 @@ class QuestionAnswerResponseSerializer(serializers.ModelSerializer):
         model = Question
         fields = (
             'id',
-            'question_image_url',
+            'image_url',
             'options',
             'selected_answer',
             'correct_answer',

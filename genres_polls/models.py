@@ -20,8 +20,7 @@ class Question(models.Model):
         null=False,
         blank=False
     )
-    # todo: rename "question_image_url" field to "image_url"
-    question_image_url = models.URLField(
+    image_url = models.URLField(
         max_length=512
     )
     options = ArrayField(
