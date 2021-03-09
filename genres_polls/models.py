@@ -20,6 +20,12 @@ class Question(models.Model):
         null=False,
         blank=False
     )
+    album = models.CharField(
+        max_length=128,
+    )
+    artist = models.CharField(
+        max_length=128,
+    )
     image_url = models.URLField(
         max_length=512
     )
