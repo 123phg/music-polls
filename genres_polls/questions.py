@@ -10,7 +10,7 @@ class QuestionValidationError(Exception):
     pass
 
 
-@dataclasses.dataclass()
+@dataclasses.dataclass(frozen=True)
 class Question:
     """
     Use Question as data transfer object between apps.
@@ -45,3 +45,26 @@ class Question:
             raise QuestionValidationError(
                 f'Question image_url field is incorrect: "{self.image_url}"'
             )
+
+
+@dataclasses.dataclass(frozen=True)
+class UserQuestionsRelation:
+    """
+    This class store relation between user and his questions.
+    """
+    user: User
+    questions: List[Question]
+
+    def __post_init__(self):
+        self._validate_user_questions_relation()
+
+    def _validate_user_questions_relation(self):
+        """
+        Each question from self.questions should be owned by self.user
+        """
+        for question in self.questions:
+            if question.owner != self.user:
+                raise QuestionValidationError(
+                    f'Can not create questions to user relation '
+                    f'because one or more questions is not owned by user {self.user}'
+                )
