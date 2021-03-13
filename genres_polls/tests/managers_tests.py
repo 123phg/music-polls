@@ -2,12 +2,26 @@ import pytest
 
 from genres_polls.factories import QuestionFactory
 from genres_polls.models import Question
+from genres_polls.questions import Question as QuestionDTO
 from music_polls.factories import UserFactory
 
 
 @pytest.fixture()
 def f_users():
     return UserFactory.create_batch(2)
+
+
+@pytest.fixture()
+def f_question_dto(f_users):
+    owner, _ = f_users
+    return QuestionDTO(
+        owner=owner,
+        album='Bad / Badder',
+        artist='Calibre',
+        image_url='http://www.calibre.com/images/bad.jpg',
+        options=['ambient', 'dub'],
+        answer='ambient'
+    )
 
 
 @pytest.mark.parametrize(
@@ -133,3 +147,20 @@ def test_should_check_that_api_return_users_questions(
     other_user_questions_len = len(Question.objects.actual_for_user(other_user))
     assert test_user_questions_len == expected_result
     assert len(Question.objects.all()) - test_user_questions_len == other_user_questions_len
+
+
+@pytest.mark.django_db
+def test_create_question_from_dto(
+        f_question_dto: QuestionDTO
+):
+    """
+    Tests, that 'from_dto' method of Question model manager returns
+    correct model object entity
+    """
+    question_model_object = Question.objects.from_question_dto(f_question_dto)
+    assert question_model_object.user == f_question_dto.owner
+    assert question_model_object.album == f_question_dto.album
+    assert question_model_object.artist == f_question_dto.artist
+    assert question_model_object.image_url == f_question_dto.image_url
+    assert question_model_object.options == f_question_dto.options
+    assert question_model_object.correct_answer == f_question_dto.answer
