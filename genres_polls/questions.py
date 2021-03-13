@@ -30,6 +30,9 @@ class Question:
         self._validate_image_url()
 
     def _validate_answer(self):
+        """
+        The answer must be present in the question's options
+        """
         if self.answer not in self.options:
             _options = ','.join(self.options)
             raise QuestionValidationError(
@@ -52,6 +55,8 @@ class UserQuestionsRelation:
     """
     This class store relation between user and his questions.
     """
+    # todo: mb change 'List' type of questions field to 'Tuple'
+
     user: User
     questions: List[Question]
 
