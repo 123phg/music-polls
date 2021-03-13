@@ -31,9 +31,10 @@ class BaseUserQuestionsWriter(QuestionAbstractWriter):
     because we should be sure, that all questions,
     that we wont to write are owned by one user.
     """
+
     def __init__(
-            self,
-            question_to_user_relation: UserQuestionsRelation
+        self,
+        question_to_user_relation: UserQuestionsRelation
     ):
         self.question_to_user_relation = question_to_user_relation
 
@@ -81,6 +82,7 @@ class UserQuestionDBWriter(BaseUserQuestionsWriter):
     Before write data, writer check questions and filter questions,
     thar already exist in data base for target user.
     """
+
     def _prepare_questions(self):
         """
         Method removes questions, which are already exist in DB
