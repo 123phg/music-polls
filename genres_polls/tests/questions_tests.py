@@ -1,25 +1,30 @@
+from typing import List
+
 import pytest
+from django.contrib.auth.models import User
 
 from genres_polls.questions import QuestionValidationError, Question, UserQuestionsRelation
 from music_polls.factories import UserFactory
 
 
 @pytest.fixture()
-def f_user():
+def f_user() -> User:
     return UserFactory.create(
         username='first_test_user'
     )
 
 
 @pytest.fixture()
-def f_other_user():
+def f_other_user() -> User:
     return UserFactory.create(
         username='second_test_user'
     )
 
 
 @pytest.fixture()
-def f_first_user_question(f_user):
+def f_first_user_question(
+    f_user: User
+) -> Question:
     return Question(
         owner=f_user,
         album='example_album',
@@ -31,7 +36,9 @@ def f_first_user_question(f_user):
 
 
 @pytest.fixture()
-def f_second_user_question(f_other_user):
+def f_second_user_question(
+    f_other_user: User
+) -> Question:
     return Question(
         owner=f_other_user,
         album='example_album',
@@ -64,12 +71,12 @@ def f_second_user_question(f_other_user):
 )
 @pytest.mark.django_db
 def test_should_check_question_validation(
-    image_url,
-    options,
-    answer,
-    error_message,
-    f_user
-):
+    image_url: str,
+    options: List[str],
+    answer: str,
+    error_message: str,
+    f_user: User
+) -> None:
     """
     Tests, that we can not create incorrect Question entity:
     - answer should be in options
@@ -91,10 +98,10 @@ def test_should_check_question_validation(
 
 @pytest.mark.django_db
 def test_should_check_question_relation_answer(
-    f_user,
-    f_first_user_question,
-    f_second_user_question
-):
+    f_user: User,
+    f_first_user_question: Question,
+    f_second_user_question: Question
+) -> None:
     """
     Tests, that we can not create user-questions relations
     with questions, owned by other user

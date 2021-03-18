@@ -1,4 +1,5 @@
 import pytest
+from django.contrib.auth.models import User
 
 from genres_polls.exceptions import AnswerValidationException
 from genres_polls.factories import QuestionFactory
@@ -7,12 +8,14 @@ from music_polls.factories import UserFactory
 
 
 @pytest.fixture()
-def f_user():
+def f_user() -> User:
     return UserFactory.create()
 
 
 @pytest.fixture()
-def f_question(f_user):
+def f_question(
+    f_user: User
+) -> Question:
     return QuestionFactory(
         image_url='http://www.test_user_q_1.jpg',
         user=f_user,
@@ -22,8 +25,8 @@ def f_question(f_user):
 
 @pytest.mark.django_db
 def test_should_save_answer(
-        f_question
-):
+    f_question: Question
+) -> None:
     """
     Check, that "answer" Question model method works correctly
     and save selected_answer
@@ -36,8 +39,8 @@ def test_should_save_answer(
 
 @pytest.mark.django_db
 def test_should_catch_correct_exception_via_already_answered_q(
-        f_question
-):
+    f_question: Question
+) -> None:
     """
     Tests, that we cant answer questions, which was answered already
     """
@@ -56,8 +59,8 @@ def test_should_catch_correct_exception_via_already_answered_q(
 
 @pytest.mark.django_db
 def test_should_catch_correct_exception_via_wrong_option(
-        f_question
-):
+    f_question: Question
+) -> None:
     """
     Tests, that we cant answer questions with answer text not from options
     """

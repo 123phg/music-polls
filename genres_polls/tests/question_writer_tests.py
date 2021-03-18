@@ -1,4 +1,7 @@
+from typing import List, Dict
+
 import pytest
+from django.contrib.auth.models import User
 
 from genres_polls.factories import QuestionFactory
 from genres_polls.models import Question as QuestionModel
@@ -8,19 +11,23 @@ from music_polls.factories import UserFactory
 
 
 @pytest.fixture()
-def f_user():
+def f_user() -> User:
     return UserFactory()
 
 
 @pytest.fixture()
-def f_user_question(f_user):
+def f_user_question(
+    f_user: User
+) -> QuestionModel:
     return QuestionFactory(
         f_user=f_user
     )
 
 
 @pytest.fixture()
-def f_new_questions(f_user):
+def f_new_questions(
+    f_user: User
+) -> UserQuestionsRelation:
     owner = f_user
     questions = [
         QuestionDTO(
@@ -47,7 +54,9 @@ def f_new_questions(f_user):
 
 
 @pytest.fixture()
-def f_duplicate_questions(f_new_questions):
+def f_duplicate_questions(
+    f_new_questions: UserQuestionsRelation
+) -> UserQuestionsRelation:
     duplicate_questions = [
         f_new_questions.questions[0],
         f_new_questions.questions[0]
@@ -59,7 +68,7 @@ def f_duplicate_questions(f_new_questions):
     )
 
 
-def test_checks_correct_writer_argument():
+def test_checks_correct_writer_argument() -> None:
     """
     We should raise exception if BaseUserQuestionsWriter
     was initiate with incorrect argument
@@ -77,7 +86,7 @@ def test_checks_correct_writer_argument():
 @pytest.mark.django_db
 def test_should_check_that_questions_unique(
     f_duplicate_questions: UserQuestionsRelation,
-):
+) -> None:
     """
     Writer should raise exception if we try to write not unique questions
     """
@@ -278,12 +287,12 @@ def test_should_check_that_questions_unique(
 )
 @pytest.mark.django_db
 def test_should_check_data_was_written_to_db(
-    existing_question,
-    new_questions,
-    expected_created_questions,
-    expected_user_questions,
-    f_user
-):
+    existing_question: List[Dict],
+    new_questions: List[Dict],
+    expected_created_questions: List[Dict],
+    expected_user_questions: List[Dict],
+    f_user: User
+) -> None:
     """
     Tests that questions data was correctly loaded to DB.
 

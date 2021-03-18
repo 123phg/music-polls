@@ -1,4 +1,7 @@
+from typing import Iterable, List, Dict, Set
+
 import pytest
+from django.contrib.auth.models import User
 
 from genres_polls.factories import QuestionFactory
 from genres_polls.models import Question
@@ -7,12 +10,12 @@ from music_polls.factories import UserFactory
 
 
 @pytest.fixture()
-def f_users():
+def f_users() -> Iterable[User]:
     return UserFactory.create_batch(2)
 
 
 @pytest.fixture()
-def f_question_dto(f_users):
+def f_question_dto(f_users) -> QuestionDTO:
     owner, _ = f_users
     return QuestionDTO(
         owner=owner,
@@ -76,10 +79,10 @@ def f_question_dto(f_users):
 )
 @pytest.mark.django_db
 def test_should_return_non_answered_questions(
-    test_user_questions,
-    expected_result,
-    f_users
-):
+    test_user_questions: List[Dict],
+    expected_result: Set[str],
+    f_users: List[User]
+) -> None:
     """
     It checks, that questions model manager returns questions with out answers
 
@@ -117,11 +120,11 @@ def test_should_return_non_answered_questions(
 )
 @pytest.mark.django_db
 def test_should_check_that_api_return_users_questions(
-    test_user_questions,
-    other_user_questions,
-    expected_result,
-    f_users
-):
+    test_user_questions: int,
+    other_user_questions: int,
+    expected_result: int,
+    f_users: List[User]
+) -> None:
     """
     This test check, that questions model manager doesn't return other users questions
 
@@ -152,7 +155,7 @@ def test_should_check_that_api_return_users_questions(
 @pytest.mark.django_db
 def test_create_question_from_dto(
         f_question_dto: QuestionDTO
-):
+) -> None:
     """
     Tests, that 'from_dto' method of Question model manager returns
     correct model object entity
