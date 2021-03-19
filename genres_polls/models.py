@@ -1,4 +1,5 @@
 import logging
+from typing import Text
 
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
@@ -51,7 +52,10 @@ class Question(models.Model):
         auto_now=True
     )
 
-    def answer(self, answer):
+    def answer(
+        self,
+        answer: Text
+    ) -> None:
         """
         Use this method to set answer the question
         """
@@ -62,7 +66,10 @@ class Question(models.Model):
         self.selected_answer = answer
         self.save()
 
-    def validate_answer(self, answer):
+    def validate_answer(
+        self,
+        answer: Text
+    ) -> None:
         """
         Check, that answer in options
         Check, that questions have not any answer

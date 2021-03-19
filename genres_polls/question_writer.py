@@ -35,15 +35,18 @@ class BaseUserQuestionsWriter(QuestionAbstractWriter):
     def __init__(
         self,
         question_to_user_relation: UserQuestionsRelation
-    ):
+    ) -> None:
         self.question_to_user_relation = question_to_user_relation
 
     @property
-    def question_to_user_relation(self):
+    def question_to_user_relation(self) -> UserQuestionsRelation:
         return self._question_to_user_relation
 
     @question_to_user_relation.setter
-    def question_to_user_relation(self, relation):
+    def question_to_user_relation(
+        self,
+        relation: UserQuestionsRelation
+    ) -> None:
         if not isinstance(relation, UserQuestionsRelation):
             raise UserQuestionsWriterError(
                 'Can not initialize UserQuestionsWriter, because '
@@ -56,7 +59,7 @@ class BaseUserQuestionsWriter(QuestionAbstractWriter):
     def _validate_questions(
         self,
         questions: List[QuestionDTO]
-    ):
+    ) -> None:
         """
         Each artist's album has individual album's cover.
         So, all questions, that we wont to write should be unique
@@ -72,7 +75,7 @@ class BaseUserQuestionsWriter(QuestionAbstractWriter):
                 'question are not unique'
             )
 
-    def write(self):
+    def write(self) -> None:
         raise NotImplementedError()
 
 
@@ -83,7 +86,7 @@ class UserQuestionDBWriter(BaseUserQuestionsWriter):
     thar already exist in data base for target user.
     """
 
-    def _prepare_questions(self):
+    def _prepare_questions(self) -> List[QuestionDTO]:
         """
         Method removes questions, which are already exist in DB
         """
@@ -112,7 +115,7 @@ class UserQuestionDBWriter(BaseUserQuestionsWriter):
 
         return questions_to_write
 
-    def write(self):
+    def write(self) -> List[QuestionModel]:
         """
         Write questions for user.
         If there are duplicates in questions, an error will occur.

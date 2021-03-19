@@ -1,10 +1,13 @@
 import logging
+from typing import Dict
 
+from django.db.models.query import QuerySet
 from rest_framework import mixins
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
+from rest_framework.serializers import ModelSerializer
 from rest_framework.viewsets import GenericViewSet
 
 from genres_polls import serializers
@@ -20,17 +23,17 @@ class GenresPollsQuestionViewSet(
     GenericViewSet
 ):
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet:
         return Question.objects.actual_for_user(self.request.user)
 
-    def get_serializers_map(self):
+    def get_serializers_map(self) -> Dict:
         return {
             self.answer.__name__: serializers.QuestionAnswerSerializer,
             self.list.__name__: serializers.QuestionsSerializer,
             self.retrieve.__name__: serializers.QuestionsSerializer,
         }
 
-    def get_serializer_class(self):
+    def get_serializer_class(self) -> ModelSerializer:
         try:
             serializer = self.get_serializers_map()[self.action]
         except KeyError as e:
@@ -38,7 +41,7 @@ class GenresPollsQuestionViewSet(
         return serializer
 
     @action(detail=True, methods=['patch'])
-    def answer(self, request, pk=None):
+    def answer(self, request, pk=None) -> Response:
         """
         This action try to set select_answer to question.
         Use in to answer the question.

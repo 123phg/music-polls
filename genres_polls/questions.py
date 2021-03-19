@@ -22,14 +22,14 @@ class Question:
     options: List[str]
     answer: str
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self._validate_fields()
 
-    def _validate_fields(self):
+    def _validate_fields(self) -> None:
         self._validate_answer()
         self._validate_image_url()
 
-    def _validate_answer(self):
+    def _validate_answer(self) -> None:
         """
         The answer must be present in the question's options
         """
@@ -40,7 +40,7 @@ class Question:
                 f'in options: "{_options}"'
             )
 
-    def _validate_image_url(self):
+    def _validate_image_url(self) -> None:
         validate = URLValidator()
         try:
             validate(self.image_url)
@@ -60,10 +60,10 @@ class UserQuestionsRelation:
     user: User
     questions: List[Question]
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self._validate_user_questions_relation()
 
-    def _validate_user_questions_relation(self):
+    def _validate_user_questions_relation(self) -> None:
         """
         Each question from self.questions should be owned by self.user
         """
