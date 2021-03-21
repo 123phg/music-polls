@@ -15,7 +15,7 @@ Examples of questions:
 Each question will contain an album cover
 
 Question telegram example
-![alt text](https://i.ibb.co/VBVsZjW/2021-03-22-0-13-51.png)
+![alt text](https://i.ibb.co/3Njmd63/demo-question.png)
 
 # Roadmap & current status
 The project is new and in the stage of active development.
