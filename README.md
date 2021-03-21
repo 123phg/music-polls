@@ -110,3 +110,20 @@ Response: \
     "correct_answer": "ambient"
 }
 ```
+
+# Components
+## Question model
+Question model - standard Django ORM data model. \
+Model has some data validations.\
+Has custom object manager to provide actual for user questions.\
+path: *genres_polls.models* and *genres_polls.managers*
+
+##QuestionDTO
+Data transfer object for question data.\
+Has some data validations. \
+path: *genres_polls.question*
+
+##Question writer
+This component will load question data for user. \
+Has deduplicatioin questions policy.
+path: genres_polls.question_writer
