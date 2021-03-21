@@ -120,14 +120,14 @@ Has custom object manager to provide actual for user questions.\
 path: *genres_polls.models* and *genres_polls.managers* 
 
 
-##QuestionDTO
+## QuestionDTO
 Data transfer object for question data.\
 Has some data validations. \
 Uses by question writer.
 path: *genres_polls.question*
 
 
-##Question writer
+## Question writer
 This component will load question data for user. \
 Has deduplication questions policy.
 path: genres_polls.question_writer
