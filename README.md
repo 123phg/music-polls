@@ -14,8 +14,8 @@ Examples of questions:
 
 Each question will contain an album cover
 
-Question telegram example
-![alt text](https://i.ibb.co/3Njmd63/demo-question.png)
+Question telegram example \
+![image_of_question_example](https://i.ibb.co/3Njmd63/demo-question.png)
 
 # Roadmap & current status
 The project is new and in the stage of active development.
@@ -23,7 +23,7 @@ Steps:
 - Create Question model with required methods & Question http api
 - Create Question writer \
   It is needed to load questions to the database for the user.
-- Create telegram bot & auth mechanism ** <- I'm here **
+- Create telegram bot & auth mechanism **<- I'm here**
 - Create demo data and release it to AWS \
   I am planning to create an internal database of questions that I will
   use instead of questions from Spotify.
@@ -45,4 +45,68 @@ docker-compose up -d
 docker-compose run --rm web sh
 pytest
 ```
-# API description
+# Http API description
+**Get quesions list**\
+Type: GET\
+Path: '/api/v1/genres-polls/questions/' \
+Response: 
+```json
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 1,
+            "image_url": "https://example_image_url/1.jpg",
+            "options": [
+                "ambient",
+                "dub step"
+            ]
+        },
+        {
+            "id": 3,
+            "image_url": "http://www.image.com/2.jpg",
+            "options": [
+                "kek"
+            ]
+        }
+    ]
+}
+```
+**Question Detail** \
+Type: GET\
+Path: '/api/v1/genres-polls/questions/{question_id}/' \
+Response: 
+```json
+{
+    "id": 1,
+    "image_url": "https://i.scdn.co/image/ab67616d00001e02872772e0b165e57a104fd37a",
+    "options": [
+        "ambient",
+        "dub step"
+    ]
+}
+```
+**Answer the question** \
+Type: PATCH\
+Path: '/api/v1/genres-polls/questions/1/answer/' \
+Content: \
+```json
+{
+    "selected_answer": "ambient"
+}
+```
+Response: \
+```json
+{
+    "id": 1,
+    "image_url": "https://i.scdn.co/image/ab67616d00001e02872772e0b165e57a104fd37a",
+    "options": [
+        "ambient",
+        "dub step"
+    ],
+    "selected_answer": "ambient",
+    "correct_answer": "ambient"
+}
+```
