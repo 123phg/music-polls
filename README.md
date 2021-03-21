@@ -6,6 +6,11 @@ How will it work?
 - The service loads data from user's Spotify recommendations and create questions for quiz based on recomendations info.
 - After that service send a question to user and handle answer
 
+The main idea is that recommendations will lead to good questions.\
+The recommendations do not contain the tracks that the user has listened to.\
+However, the recommendations contain information about tracks that are similar \
+to the ones the user has listened to.
+
 Examples of questions:
 - Who is the author of the album?
 - What year was the album released?
@@ -15,6 +20,7 @@ Examples of questions:
 Each question will contain an album cover
 
 Question telegram example \
+\
 ![image_of_question_example](https://i.ibb.co/3Njmd63/demo-question.png)
 
 # Roadmap & current status
