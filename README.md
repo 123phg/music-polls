@@ -97,13 +97,13 @@ Response:
 **Answer the question** \
 Type: PATCH\
 Path: '/api/v1/genres-polls/questions/1/answer/' \
-Content: \
+Content:
 ```json
 {
     "selected_answer": "ambient"
 }
 ```
-Response: \
+Response:
 ```json
 {
     "id": 1,
