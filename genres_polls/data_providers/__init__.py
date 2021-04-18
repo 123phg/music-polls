@@ -1,0 +1,1 @@
+from genres_polls.data_providers.base_data_provider import DemoDataProvider

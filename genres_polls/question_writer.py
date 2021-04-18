@@ -88,31 +88,12 @@ class UserQuestionDBWriter(BaseUserQuestionsWriter):
 
     def _prepare_questions(self) -> List[QuestionDTO]:
         """
-        Method removes questions, which are already exist in DB
+        We shouldn't load duplicate questions
         """
-        exist_questions = set(
-            QuestionModel.objects.filter(
-                user=self.question_to_user_relation.user
-            ).values_list('artist', 'album')
+        questions_to_write = QuestionModel.objects.deduplicate_user_questions(
+            self.question_to_user_relation.user,
+            self.question_to_user_relation.questions
         )
-
-        new_questions_map = {
-            (question.artist, question.album): question
-            for question in self.question_to_user_relation.questions
-        }
-
-        questions_to_write_keys = set(new_questions_map) - exist_questions
-        questions_to_write = []
-        for question_key in questions_to_write_keys:
-            questions_to_write.append(
-                new_questions_map[question_key]
-            )
-        skipped_questions_len = len(new_questions_map) - len(questions_to_write)
-
-        logger.info(
-            f'{skipped_questions_len} questions was skipped to write.'
-        )
-
         return questions_to_write
 
     def write(self) -> List[QuestionModel]:

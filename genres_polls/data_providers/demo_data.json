@@ -1,0 +1,107 @@
+[
+  {
+    "album": "SM007V",
+    "artist": "Dasha Rush",
+    "image_url": "https://i1.sndcdn.com/artworks-000128864984-c0etzi-t500x500.jpg",
+    "options": ["2016","2006"],
+    "answer": "2016"
+  },
+  {
+      "album": "What Ya Mean EP",
+      "artist": "DPRTNDRP",
+      "image_url": "https://f4.bcbits.com/img/a3296316270_10.jpg",
+      "options": ["2010","2015","2020"],
+      "answer": "2020"
+  },
+  {
+      "album": "Digital Soundbwoy",
+      "artist": "Tinky",
+      "image_url": "https://f4.bcbits.com/img/a0474989595_16.jpg",
+      "options": ["2014","2017","2020"],
+      "answer": "2020"
+  },
+  {
+      "album": "Psycho Sushi EP",
+      "artist": "Eva808",
+      "image_url": "https://trusik.co.uk/wp-content/uploads/2016/07/eva808-psycho-sushi-ep-crucial006-770x770.jpg",
+      "options": ["2002","2010","2016"],
+      "answer": "2016"
+  },
+  {
+      "album": "Dravus",
+      "artist": "Tinky",
+      "image_url": "https://m.media-amazon.com/images/I/81NqqihWOxL._SS500_.jpg",
+      "options": ["2008","2013","2019"],
+      "answer": "2019"
+  },
+  {
+      "album": "Condition",
+      "artist": "Calibre",
+      "image_url": "https://img.discogs.com/B00uTKiMovybNRdjYn5byaUC-VI=/fit-in/500x500/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-3140025-1317643749.jpeg.jpg",
+      "options": ["2011","2015","2019"],
+      "answer": "2011"
+  },
+  {
+      "album": "Dedication",
+      "artist": "Zomby",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0e/Zomby_-_Dedication.jpg/220px-Zomby_-_Dedication.jpg",
+      "options": ["2007","2011","2015"],
+      "answer": "2011"
+  },
+  {
+      "album": "Mercury’s Rainbow",
+      "artist": "Zomby",
+      "image_url": "https://media.pitchfork.com/photos/5a282c294166de2d9c718cad/1:1/w_320/%20Mercury's%20Rainbow%20.jpg",
+      "options": ["2015","2011","2017"],
+      "answer": "2017"
+  },
+  {
+      "album": "Velvet Light",
+      "artist": "Jakob Ogawa",
+      "image_url": "https://images.genius.com/4ec29eb6c4437cf01005128b2d44a85f.500x500x1.jpg",
+      "options": ["2015","2011","2018"],
+      "answer": "2018"
+  },
+  {
+      "album": "Kindred",
+      "artist": "Burial",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/4/4e/Kindred_cover.jpg",
+      "options": ["2007","2009","2012"],
+      "answer": "2012"
+  },
+  {
+      "album": "Take Your Time",
+      "artist": "Bop",
+      "image_url": "https://i1.sndcdn.com/artworks-PyCWHuHraPQGd6dH-bNzIUQ-t500x500.jpg",
+      "options": ["2016","2018","2021"],
+      "answer": "2021"
+  },
+  {
+      "album": "Take Your Time",
+      "artist": "Bop",
+      "image_url": "https://i1.sndcdn.com/artworks-PyCWHuHraPQGd6dH-bNzIUQ-t500x500.jpg",
+      "options": ["2016","2018","2021"],
+      "answer": "2021"
+  },
+  {
+      "album": "Join Us",
+      "artist": "Abstract Elements",
+      "image_url": "https://img.discogs.com/Y9H4lbmUsve39hgfMs2VGUv8oLQ=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-12251246-1531441464-2989.jpeg.jpg",
+      "options": ["2016","2018","2021"],
+      "answer": "2018"
+  },
+  {
+      "album": "Clubroot",
+      "artist": "Clubroot",
+      "image_url": "https://img.discogs.com/biNyz6YP_vSvnWe0kHrwmAvTZE0=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-1820416-1277256060.jpeg.jpg",
+      "options": ["2009","2014","2017"],
+      "answer": "2009"
+  },
+  {
+      "album": "Clubroot",
+      "artist": "Surface Tension: III",
+      "image_url": "https://f4.bcbits.com/img/a2336465285_5.jpg",
+      "options": ["2015","2017","2020"],
+      "answer": "2020"
+  }
+]
