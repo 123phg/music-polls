@@ -3,3 +3,4 @@ psycopg2 --no-binary psycopg2
 djangorestframework
 pytest-django
 factory-boy
+python-telegram-bot
